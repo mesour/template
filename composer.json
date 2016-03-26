@@ -18,6 +18,9 @@
     "latte/latte": "^2.3",
     "nette/tester": "^1.7"
   },
+  "suggest": {
+    "latte/latte": "to use LatteTemplate."
+  },
   "autoload": {
       "classmap": ["src/"]
   }
