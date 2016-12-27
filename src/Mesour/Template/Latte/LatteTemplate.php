@@ -45,6 +45,14 @@ class LatteTemplate extends Mesour\Template\AbstractTemplate
 		self::$engine->setTempDirectory($tempDir);
 	}
 
+	public function setTranslator(Mesour\Components\Localization\ITranslator $translator = null)
+	{
+		self::$engine->addFilter('translate', function ($message, $count = null) use ($translator) {
+			$object = $translator ?: $this->getNullTranslator();
+			return call_user_func_array([$object, 'translate'], [$message, $count]);
+		});
+	}
+
 	public function render($toString = false)
 	{
 		if (!$toString) {

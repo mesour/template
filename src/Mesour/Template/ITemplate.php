@@ -23,6 +23,8 @@ interface ITemplate
 
 	public function setTempDirectory($tempDir);
 
+	public function setTranslator(Mesour\Components\Localization\ITranslator $translator);
+
 	public function setParameters($parameters);
 
 	public function render($toString = false);

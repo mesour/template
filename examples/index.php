@@ -9,6 +9,7 @@ define('SRC_DIR', __DIR__ . '/../src/');
 @mkdir(__DIR__ . '/tmp');
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once __DIR__ . '/TestTranslator.php';
 
 \Tracy\Debugger::enable(\Tracy\Debugger::DEVELOPMENT, __DIR__ . '/log');
 \Tracy\Debugger::$strictMode = true;
@@ -21,7 +22,9 @@ require_once SRC_DIR . 'Mesour/UI/TemplateFile.php';
 
 $engine = new \Mesour\Template\Latte\LatteTemplate();
 
-$template = new \Mesour\UI\TemplateFile($engine, __DIR__ . '/tmp');
+$translator = new \Mesour\TemplateTests\TestTranslator();
+
+$template = new \Mesour\UI\TemplateFile($engine, __DIR__ . '/tmp', $translator);
 
 $template->setFile(__DIR__ . '/template.latte');
 

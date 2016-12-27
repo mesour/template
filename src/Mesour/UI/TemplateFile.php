@@ -9,7 +9,7 @@
 
 namespace Mesour\UI;
 
-use Mesour;
+use Mesour\Components\Localization\ITranslator;
 use Mesour\Template;
 
 /**
@@ -23,10 +23,11 @@ class TemplateFile extends \stdClass
 
 	private $parameters = [];
 
-	public function __construct(Template\ITemplate $engine, $tempDir)
+	public function __construct(Template\ITemplate $engine, $tempDir, ITranslator $translator = null)
 	{
 		$this->template = $engine;
 		$engine->setTempDirectory($tempDir);
+		$engine->setTranslator($translator);
 	}
 
 	public function setFile($file)

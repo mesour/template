@@ -19,6 +19,8 @@ abstract class AbstractTemplate implements ITemplate
 
 	private $file;
 
+	private static $nullTranslator;
+
 	private $parameters = [];
 
 	public function setFile($file)
@@ -37,6 +39,14 @@ abstract class AbstractTemplate implements ITemplate
 	protected function getParameters()
 	{
 		return $this->parameters;
+	}
+
+	protected function getNullTranslator()
+	{
+		if (!self::$nullTranslator) {
+			self::$nullTranslator = new Mesour\Components\Localization\NullTranslator();
+		}
+		return self::$nullTranslator;
 	}
 
 	protected function getFile()
