@@ -2,7 +2,7 @@
 /**
  * This file is part of the Mesour Template (http://components.mesour.com/version3/component/template/)
  *
- * Copyright (c) 2016 Matouš Němec (http://mesour.com)
+ * Copyright (c) 2017 Matouš Němec (http://mesour.com)
  *
  * For full licence and copyright please view the file licence.md in root of this project
  */
@@ -18,6 +18,8 @@ abstract class AbstractTemplate implements ITemplate
 {
 
 	private $file;
+
+	private static $nullTranslator;
 
 	private $parameters = [];
 
@@ -37,6 +39,14 @@ abstract class AbstractTemplate implements ITemplate
 	protected function getParameters()
 	{
 		return $this->parameters;
+	}
+
+	protected function getNullTranslator()
+	{
+		if (!self::$nullTranslator) {
+			self::$nullTranslator = new Mesour\Components\Localization\NullTranslator();
+		}
+		return self::$nullTranslator;
 	}
 
 	protected function getFile()

@@ -2,7 +2,7 @@
 /**
  * This file is part of the Mesour Template (http://components.mesour.com/version3/component/template/)
  *
- * Copyright (c) 2016 Matouš Němec (http://mesour.com)
+ * Copyright (c) 2017 Matouš Němec (http://mesour.com)
  *
  * For full licence and copyright please view the file licence.md in root of this project
  */
@@ -22,6 +22,8 @@ interface ITemplate
 	public function setBlock($block);
 
 	public function setTempDirectory($tempDir);
+
+	public function setTranslator(Mesour\Components\Localization\ITranslator $translator);
 
 	public function setParameters($parameters);
 

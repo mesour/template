@@ -2,14 +2,14 @@
 /**
  * This file is part of the Mesour Template (http://components.mesour.com/version3/component/template/)
  *
- * Copyright (c) 2016 Matouš Němec (http://mesour.com)
+ * Copyright (c) 2017 Matouš Němec (http://mesour.com)
  *
  * For full licence and copyright please view the file licence.md in root of this project
  */
 
 namespace Mesour\UI;
 
-use Mesour;
+use Mesour\Components\Localization\ITranslator;
 use Mesour\Template;
 
 /**
@@ -23,10 +23,11 @@ class TemplateFile extends \stdClass
 
 	private $parameters = [];
 
-	public function __construct(Template\ITemplate $engine, $tempDir)
+	public function __construct(Template\ITemplate $engine, $tempDir, ITranslator $translator = null)
 	{
 		$this->template = $engine;
 		$engine->setTempDirectory($tempDir);
+		$engine->setTranslator($translator);
 	}
 
 	public function setFile($file)

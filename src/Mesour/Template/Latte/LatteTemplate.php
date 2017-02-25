@@ -2,7 +2,7 @@
 /**
  * This file is part of the Mesour Template (http://components.mesour.com/version3/component/template/)
  *
- * Copyright (c) 2016 Matouš Němec (http://mesour.com)
+ * Copyright (c) 2017 Matouš Němec (http://mesour.com)
  *
  * For full licence and copyright please view the file licence.md in root of this project
  */
@@ -43,6 +43,14 @@ class LatteTemplate extends Mesour\Template\AbstractTemplate
 	public function setTempDirectory($tempDir)
 	{
 		self::$engine->setTempDirectory($tempDir);
+	}
+
+	public function setTranslator(Mesour\Components\Localization\ITranslator $translator = null)
+	{
+		self::$engine->addFilter('translate', function ($message, $count = null) use ($translator) {
+			$object = $translator ?: $this->getNullTranslator();
+			return call_user_func_array([$object, 'translate'], [$message, $count]);
+		});
 	}
 
 	public function render($toString = false)
